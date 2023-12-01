@@ -5,9 +5,9 @@ namespace FnvBrute
 {
     class FnvHasher
     {
-        private const uint OffsetBasis = 2166136261;
+        private const uint OffsetBasis = 5381;
 
-        private const uint Prime = 16777619;
+        private const uint Prime = 33;
 
         // digits are 0x30 to 0x39
         // lowercase alphabet is 0x61 to 0x7a
@@ -36,12 +36,12 @@ namespace FnvBrute
             _hashes = new uint[length - 1];
 
             // set up the first byte to get going after an Increment()
-            _bytes[0] = 0x60;
+            _bytes[0] = 0x40;
 
             for (var i = 1; i < _bytes.Length; i++)
             {
                 // set up every other byte to chain Increment() for the whole array
-                _bytes[i] = 0x5f;
+                _bytes[i] = 0x7a;
             }
         }
 
@@ -72,6 +72,8 @@ namespace FnvBrute
                     lastByte = nextByte;
                     uint result = tempHash;
                     result ^= lastByte;
+
+                    // Console.WriteLine($"Length {length} check: >> {Encoding.ASCII.GetString(_bytes) + Convert.ToChar(lastByte)}");
 
                     if (result == match)
                     {
