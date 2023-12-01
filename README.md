@@ -1,14 +1,18 @@
-# FnvBrute
+# FnvBrute (for Frostbite)
+> [!NOTE]
+> This is a fork of the original [FnvBrute](https://github.com/xyx0826/FnvBrute) repository.
 
 ## Introduction
 
 FnvBrute is a simple tool for finding collisions in 32-bit FNV-1 hashes. 
 These hashes are primarily used by Wwise, a widely used video game audio middleware.
 
-Since FnvBrute is designed with Wwise hashes in mind, **it is important to note that plain texts are generated under these rules:**
+~~Since FnvBrute is designed with Wwise hashes in mind, **it is important to note that plain texts are generated under these rules:**~~
 
-- The first byte can only be a lowercase letter
-- Any byte after that can be a lowercase letter, a digit, or an underscore
+FnvBrute in this repository is modified to work with ***Frostbite*** hashes, and **the rules for generating plain texts are changed to match Frostbite's hash generation rules**:
+
+- The first byte can only be a letter (both uppercase and lowercase)
+- Any byte after that can be a letter or a digit
 
 The implementation of FnvBrute is very barebone. It offers no GPU acceleration, dictionary support, or pause/resume/checkpoint features. 
 FnvBrute uses very basic multithreading; it spins up a separate thread for every length of plain text. 
